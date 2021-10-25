@@ -101,27 +101,17 @@ static inline unsigned long cmpxchg_386(volatile void *ptr, unsigned long old,
 #define cmpxchg(ptr, o, n)						\
 ({									\
 	__typeof__(*(ptr)) __ret;					\
-	if (likely(boot_cpu_data.x86 > 3))				\
-		__ret = (__typeof__(*(ptr)))__cmpxchg((ptr),		\
-				(unsigned long)(o), (unsigned long)(n),	\
-				sizeof(*(ptr)));			\
-	else								\
-		__ret = (__typeof__(*(ptr)))cmpxchg_386((ptr),		\
-				(unsigned long)(o), (unsigned long)(n),	\
-				sizeof(*(ptr)));			\
+	__ret = (__typeof__(*(ptr)))cmpxchg_386((ptr),			\
+			(unsigned long)(o), (unsigned long)(n),		\
+			sizeof(*(ptr)));				\
 	__ret;								\
 })
 #define cmpxchg_local(ptr, o, n)					\
 ({									\
 	__typeof__(*(ptr)) __ret;					\
-	if (likely(boot_cpu_data.x86 > 3))				\
-		__ret = (__typeof__(*(ptr)))__cmpxchg_local((ptr),	\
-				(unsigned long)(o), (unsigned long)(n),	\
-				sizeof(*(ptr)));			\
-	else								\
-		__ret = (__typeof__(*(ptr)))cmpxchg_386((ptr),		\
-				(unsigned long)(o), (unsigned long)(n),	\
-				sizeof(*(ptr)));			\
+	__ret = (__typeof__(*(ptr)))cmpxchg_386((ptr),			\
+			(unsigned long)(o), (unsigned long)(n),		\
+			sizeof(*(ptr)));				\
 	__ret;								\
 })
 #endif
