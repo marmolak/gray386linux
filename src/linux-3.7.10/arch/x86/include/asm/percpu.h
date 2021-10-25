@@ -317,37 +317,9 @@ do {									\
  */
 #define percpu_cmpxchg_op(var, oval, nval)				\
 ({									\
-	typeof(var) pco_ret__;						\
-	typeof(var) pco_old__ = (oval);					\
-	typeof(var) pco_new__ = (nval);					\
-	switch (sizeof(var)) {						\
-	case 1:								\
-		asm("cmpxchgb %2, "__percpu_arg(1)			\
-			    : "=a" (pco_ret__), "+m" (var)		\
-			    : "q" (pco_new__), "0" (pco_old__)		\
-			    : "memory");				\
-		break;							\
-	case 2:								\
-		asm("cmpxchgw %2, "__percpu_arg(1)			\
-			    : "=a" (pco_ret__), "+m" (var)		\
-			    : "r" (pco_new__), "0" (pco_old__)		\
-			    : "memory");				\
-		break;							\
-	case 4:								\
-		asm("cmpxchgl %2, "__percpu_arg(1)			\
-			    : "=a" (pco_ret__), "+m" (var)		\
-			    : "r" (pco_new__), "0" (pco_old__)		\
-			    : "memory");				\
-		break;							\
-	case 8:								\
-		asm("cmpxchgq %2, "__percpu_arg(1)			\
-			    : "=a" (pco_ret__), "+m" (var)		\
-			    : "r" (pco_new__), "0" (pco_old__)		\
-			    : "memory");				\
-		break;							\
-	default: __bad_percpu_size();					\
-	}								\
-	pco_ret__;							\
+	typeof(var) pco_ret__;                                          \
+        pco_ret__ = cmpxchg(var, oval, nval);                           \
+        pco_ret__;                                                      \
 })
 
 /*
@@ -407,6 +379,8 @@ do {									\
 #define this_cpu_xchg_4(pcp, nval)	percpu_xchg_op(pcp, nval)
 
 #ifndef CONFIG_M386
+#include <asm/cmpxchg_32.h>
+
 #define __this_cpu_add_return_1(pcp, val) percpu_add_return_op(pcp, val)
 #define __this_cpu_add_return_2(pcp, val) percpu_add_return_op(pcp, val)
 #define __this_cpu_add_return_4(pcp, val) percpu_add_return_op(pcp, val)
