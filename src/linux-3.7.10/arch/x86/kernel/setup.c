@@ -770,17 +770,9 @@ void __init setup_arch(char **cmdline_p)
 	printk(KERN_INFO "Command line: %s\n", boot_command_line);
 #endif
 
-	/*
-	 * If we have OLPC OFW, we might end up relocating the fixmap due to
-	 * reserve_top(), so do this before touching the ioremap area.
-	 */
-	olpc_ofw_detect();
-
 	early_trap_init();
 	early_cpu_init();
 	early_ioremap_init();
-
-	setup_olpc_ofw_pgd();
 
 	ROOT_DEV = old_decode_dev(boot_params.hdr.root_dev);
 	screen_info = boot_params.screen_info;
