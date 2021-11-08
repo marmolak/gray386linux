@@ -29,6 +29,20 @@ Fedora 35 with Nix installed.
 
 `export GR_CPUS=$(nproc --all)`
 
+**21.** Set `gray386/bin`
+-------------------------
+
+`mkdir -p gray386/bin`
+
+`which ar`
+
+`ln -s /path/to/ar ./musl-ar`
+
+`which strip`
+
+`ln -s /pat/to/strip musl-strip`
+
+
 **30.** Build musl libc
 -----------------------
 
