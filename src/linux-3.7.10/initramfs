@@ -1,0 +1,27 @@
+dir /dev 755 0 0
+nod /dev/console 644 0 0 c 5 1
+nod /dev/loop0 644 0 0 b 7 0
+nod /dev/tty 666 0 0 c 5 0
+nod /dev/tty1 666 0 0 c 4 1
+nod /dev/tty2 666 0 0 c 4 2
+nod /dev/tty3 666 0 0 c 4 3
+nod /dev/tty4 666 0 0 c 4 4
+nod /dev/null 666 0 0 c 1 3
+nod /dev/zero 666 0 0 c 1 5
+nod /dev/random 0600 0 0 c 1 8
+nod /dev/urandom 0600 0 0 c 1 9
+nod /dev/fd0 0600 0 0 b 2 0
+
+nod /dev/sda 0600 0 0 b 8 0
+nod /dev/sda1 0600 0 0 b 8 1
+nod /dev/sda2 0600 0 0 b 8 2
+
+dir /bin 755 0 0
+dir /proc 755 0 0
+dir /sys 755 0 0
+dir /mnt 755 0 0
+dir /etc 755 0 0
+slink /init /bin/busybox 755 0 0
+dir /etc/init.d/ 755 0 0
+file /etc/init.d/rc ../gray386/etc/init.d/rc 755 0 0
+file /etc/inittab ../gray386/etc/inittab 655 0 0
