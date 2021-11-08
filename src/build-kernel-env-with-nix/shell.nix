@@ -9,12 +9,15 @@ in gcc49Stdenv.mkDerivation
 {
     name = "old-kernel-dev-environment";
     buildInputs = [
-        ncurses5
+        ncurses
+        ncurses.dev
+        pkg-config
         syslinux
         oldPerlPkg
         flex
         bison
         rsync
+	less
     ];
 
     shellHook = ''

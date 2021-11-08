@@ -16,6 +16,10 @@ in (overrideCC stdenv gccNoCetWrap).mkDerivation
     hardeningDisable = [ "all" ];
 
     buildInputs = [
+	ncurses
+	ncurses.dev
+	pkg-config
+	less
     ];
 
     shellHook = ''
