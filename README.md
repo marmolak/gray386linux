@@ -12,7 +12,7 @@ How to build gray386 linux
 ==========================
 
 Tested build environment:
-Fedora 34 with Nix installed.
+Fedora 35 with Nix installed.
 
 **10.** [Install Nix](https://nixos.org/manual/nix/stable/#sect-multi-user-installation)
 -------------------
@@ -22,27 +22,69 @@ Fedora 34 with Nix installed.
 
 `cd src/build-env-with-nix/`
 
-`nix-shell --pure` 
-
+`nix-shell --pure`
 
 **20.** Get num of cpus
 -----------------------
 
 `export GR_CPUS=$(nproc --all)`
 
-**21.** Build kernel with `nix-shell`
+**30.** Build musl libc
+-----------------------
+
+`./configure --target=i386 --prefix=../gray386/`
+
+`make -j"$GR_CPUS"`
+
+`make install`
+
+**40.** Build busybox
+---------------------
+
+(optional) `make menuconfig`
+
+`make -j"$GR_CPUS"`
+
+`make install`
+
+**41.** Leave nix-shell
+-----------------------
+
+`exit`
+
+**50.** Build kernel with `nix-shell`
 -------------------------------------
 
 `cd src/build-kernel-env-with-nix/`
 
 `nix-shell --pure`
 
-**30.** In Linux kernel directory
+**60.** In Linux kernel directory
 ---------------------------------
 
-`make -j"$GR_CPUS" ARCH=i386 CFLAGS=-m32 CFLAGS_KERNEL=-m32 nconfig` (optional)
+(optional) `make -j"$GR_CPUS" ARCH=i386 nconfig`
 
-`make -j"$GR_CPUS" ARCH=i386 CFLAGS=-m32 CFLAGS_KERNEL="-march=i386 -mtune=i386 -m32" bzImage`
+`make -j"$GR_CPUS" ARCH=i386 bzImage`
+
+Results are in:
+
+`arch/x86/boot/bzImage`
+`usr/initramfs_data.cpio.gz`
+
+**61.** Exit nix-shell
+----------------------
+
+`exit`
+
+**62.** (optional) Test build
+-----------------------------
+
+You need to have qemu installed.
+
+In kernel directory just run
+
+`./test-build.sh`
+
 
 **70.** Cleanup build
 ---------------------
