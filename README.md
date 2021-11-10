@@ -8,6 +8,10 @@
 Linux for i386 machines
 ```
 
+Are you interested in Linux on i486 machine? Take a look at [gray486linux](https://github.com/marmolak/gray486linux). Currently, it's not possible to run gray386 on i486 machine. However i486
+machine is still able to run actual Linux kernel (2021).
+
+
 How to get binary build?
 ========================
 It's easy. Just take a look at bin directory. There is 2 folders named:
