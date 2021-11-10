@@ -8,6 +8,17 @@
 Linux for i386 machines
 ```
 
+How to get binary build?
+========================
+It's easy. Just take a look at bin directory. There is 2 folders named:
+
+(not available - waiting on FPU) `fpu` - version for machines with FPU coprocessor installed.
+
+`no_fpu` - build with software FPU enabled.
+
+NOTE: only AMD cpus are enabled by default now.
+
+
 How to build gray386 linux
 ==========================
 
