@@ -14,7 +14,7 @@ machine is still able to run actual Linux kernel (2021).
 
 How to get binary build?
 ========================
-It's easy. Just take a look at bin directory. There is 2 folders named:
+It's easy. Just take a look at `bin` directory. There is 2 folders named:
 
 (not available - waiting on FPU) `fpu` - version for machines with FPU coprocessor installed.
 
