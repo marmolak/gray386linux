@@ -88,6 +88,21 @@ Fedora 35 with Nix installed.
 
 `nix-shell --pure`
 
+**59.** Update `.config` in kernel directory
+--------------------------------------------
+
+There is mapping hidden in `.config` and you need to change it
+to UID of user under you compile a kernel.
+
+`CONFIG_INITRAMFS_ROOT_UID=1001`
+
+`CONFIG_INITRAMFS_ROOT_GID=1001`
+
+Then you can do some other changes with:
+
+`make -j"$GR_CPUS" ARCH=i386 nconfig`
+
+
 **60.** In Linux kernel directory
 ---------------------------------
 
