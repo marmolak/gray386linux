@@ -21,6 +21,9 @@ dir /proc 755 0 0
 dir /sys 755 0 0
 dir /mnt 755 0 0
 dir /etc 755 0 0
+dir /usr/ 755 0 0
+dir /usr/share/ 755 0 0 
+dir /usr/share/udhcpc/ 755 0 0
 slink /init /bin/busybox 755 0 0
 dir /etc/init.d/ 755 0 0
 file /etc/init.d/rc ../gray386/etc/init.d/rc 755 0 0
