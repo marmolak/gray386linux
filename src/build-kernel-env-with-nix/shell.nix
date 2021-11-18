@@ -21,6 +21,7 @@ in gcc49Stdenv.mkDerivation
     ];
 
     shellHook = ''
+	export GR_CPUS=$(nproc --all)
         cd ../linux-3.7.10/
     '';
 }

@@ -25,6 +25,7 @@ in (overrideCC stdenv gccNoCetWrap).mkDerivation
     shellHook = ''
 	export CFLAGS="-m32 -march=i386 -mtune=i386 -fcf-protection=none -fno-stack-protector -fomit-frame-pointer -mno-mmx -mno-sse -fno-pic -Os"
 	export CC="gcc"
+	export GR_CPUS=$(nproc --all)
 	cd ..
     '';
 }

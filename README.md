@@ -22,29 +22,59 @@ It's easy. Just take a look at `bin` directory. There is 2 folders named:
 
 NOTE: only AMD cpus are enabled by default now.
 
+NOTE2: gray386 linux is source based distribution so binaries can be older than
+current configuration.
 
-How to build gray386 linux
-==========================
+
+How to build a gray386 linux
+============================
 
 Tested build environment:
 Fedora 35 with Nix installed.
 
 **10.** [Install Nix](https://nixos.org/manual/nix/stable/#sect-multi-user-installation)
--------------------
+----------------------------------------------------------------------------------------
 
-**11.** Build user env with `nix-shell` (in progress now)
+
+**20.** Get num of cpus
+-----------------------
+
+Nix-shell scripts take handle of it.
+
+If you don't want to use `nix-shell`, just type:
+
+`export GR_CPUS=$(nproc --all)`
+
+
+**28.** Get kernel headers with `nix-shell`
+-------------------------------------------
+
+`cd src/build-kernel-env-with-nix/`
+
+`nix-shell --pure`
+
+
+**28.** Install kernel headers
+------------------------------
+
+`make headers_install ARCH=i386 INSTALL_HDR_PATH=../gray386/`
+
+
+**29.** Leave nix-shell
+-----------------------
+
+`exit`
+
+
+**30.** Build user env with `nix-shell`
 ---------------------------------------
 
 `cd src/build-env-with-nix/`
 
 `nix-shell --pure`
 
-**20.** Get num of cpus
------------------------
 
-`export GR_CPUS=$(nproc --all)`
-
-**21.** Set `gray386/bin`
+**31.** Set `gray386/bin`
 -------------------------
 
 `mkdir -p gray386/bin`
@@ -58,16 +88,17 @@ Fedora 35 with Nix installed.
 `ln -s /pat/to/strip musl-strip`
 
 
-**30.** Build musl libc
+**40.** Build musl libc
 -----------------------
 
-`./configure --target=i386 --prefix=../gray386/`
+`CFLAGS="$CFLAGS -I../gray386/include/" ./configure --target=i386 --prefix=../gray386/`
 
 `make -j"$GR_CPUS"`
 
 `make install`
 
-**40.** Build busybox
+
+**50.** Build busybox
 ---------------------
 
 (optional) `make menuconfig`
@@ -76,19 +107,22 @@ Fedora 35 with Nix installed.
 
 `make install`
 
-**41.** Leave nix-shell
+
+**51.** Leave nix-shell
 -----------------------
 
 `exit`
 
-**50.** Build kernel with `nix-shell`
+
+**60.** Build kernel with `nix-shell`
 -------------------------------------
 
 `cd src/build-kernel-env-with-nix/`
 
 `nix-shell --pure`
 
-**59.** Update `.config` in kernel directory
+
+**61.** Update `.config` in kernel directory
 --------------------------------------------
 
 There is mapping hidden in `.config` and you need to change it
@@ -103,7 +137,7 @@ Then you can do some other changes with:
 `make -j"$GR_CPUS" ARCH=i386 nconfig`
 
 
-**60.** In Linux kernel directory
+**70.** In Linux kernel directory
 ---------------------------------
 
 (optional) `make -j"$GR_CPUS" ARCH=i386 nconfig`
@@ -115,12 +149,13 @@ Results are in:
 `arch/x86/boot/bzImage`
 `usr/initramfs_data.cpio.gz`
 
-**61.** Exit nix-shell
+
+**80.** Exit nix-shell
 ----------------------
 
 `exit`
 
-**62.** (optional) Test build
+**81.** (optional) Test build
 -----------------------------
 
 You need to have qemu installed.
@@ -130,7 +165,7 @@ In kernel directory just run
 `./test-build.sh`
 
 
-**70.** Cleanup build
+**90.** Cleanup build
 ---------------------
 
 `git clean -f -d -X`
