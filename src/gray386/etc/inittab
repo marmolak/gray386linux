@@ -1,5 +1,5 @@
 ::sysinit:/etc/init.d/rc
-::respawn:/bin/sh
+::respawn:/bin/cttyhack /bin/sh
 ::restart:/sbin/init
 ::ctrlaltdel:/sbin/reboot
 ::shutdown:/bin/umount -a -r
