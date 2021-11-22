@@ -74,24 +74,10 @@ If you don't want to use `nix-shell`, just type:
 `nix-shell --pure`
 
 
-**31.** Set `gray386/bin`
--------------------------
-
-`mkdir -p gray386/bin`
-
-`which ar`
-
-`ln -s /path/to/ar ./musl-ar`
-
-`which strip`
-
-`ln -s /pat/to/strip musl-strip`
-
-
 **40.** Build musl libc
 -----------------------
 
-`CFLAGS="$CFLAGS -I../gray386/include/" ./configure --target=i386 --prefix=../gray386/`
+`CFLAGS="$CFLAGS -I$(realpath "${PWD}/../gray386/include")" ./configure --target=i386 --prefix=$(realpath "${PWD}/../gray386/")`
 
 `make -j"$GR_CPUS"`
 
