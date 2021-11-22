@@ -27,5 +27,16 @@ in (overrideCC stdenv gccNoCetWrap).mkDerivation
 	export CC="gcc"
 	export GR_CPUS=$(nproc --all)
 	cd ..
+
+	# set strip and ar
+	mkdir -p ./gray386/bin/
+	pushd ./gray386/bin/ &> /dev/null
+	rm -rf ./musl-strip
+	rm -rf ./musl-ar
+
+	ln -s "$(which strip)" musl-strip
+	ln -s "$(which ar)" musl-ar
+
+	popd &> /dev/null
     '';
 }
