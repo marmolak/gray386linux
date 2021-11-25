@@ -32,7 +32,7 @@ How to build a gray386 linux
 Tested build environment:
 Fedora 35 with Nix installed.
 
-**10.** [Install Nix](https://nixos.org/manual/nix/stable/#sect-multi-user-installation)
+**10.** [Install Nix](https://nixos.org/manual/nix/stable/installation/installing-binary.html#multi-user-installation)
 ----------------------------------------------------------------------------------------
 
 
