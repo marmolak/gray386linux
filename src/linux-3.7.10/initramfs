@@ -31,4 +31,5 @@ dir /usr/share/udhcpc/ 755 0 0
 slink /init /bin/busybox 755 0 0
 dir /etc/init.d/ 755 0 0
 file /etc/init.d/rc ../gray386/etc/init.d/rc 755 0 0
-file /etc/inittab ../gray386/etc/inittab 655 0 0
+file /etc/inittab ../gray386/etc/inittab 644 0 0
+file /usr/share/udhcpc/default.script ../busybox-1.34.1/examples/udhcp/simple.script 655 0 0
