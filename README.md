@@ -16,7 +16,7 @@ How to get binary build?
 ========================
 It's easy. Just take a look at `bin` directory. There is 2 folders named:
 
-(not available - waiting on FPU) `fpu` - version for machines with FPU coprocessor installed.
+`fpu` - version for machines with FPU coprocessor installed.
 
 `no_fpu` - build with software FPU enabled.
 
