@@ -19,6 +19,7 @@ in (overrideCC stdenv gccNoCetWrap).mkDerivation
 	ncurses
 	ncurses.dev
 	pkg-config
+	which
 	less
     ];
 
