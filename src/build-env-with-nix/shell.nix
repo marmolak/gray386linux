@@ -20,6 +20,7 @@ in (overrideCC stdenv gccNoCetWrap).mkDerivation
 	ncurses.dev
 	pkg-config
 	which
+	autoconf
 	less
     ];
 

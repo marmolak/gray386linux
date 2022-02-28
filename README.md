@@ -96,6 +96,8 @@ If you don't want to use `nix-shell`, just type:
 **51.** (optional) Build dropbear SSH client (+~266 K)
 ------------------------------------------------------
 
+`autoconf; autoheader`
+
 `CC="$(realpath $PWD/../gray386/bin/musl-gcc)"  ./configure --enable-static --enable-bundled-libtom --disable-syslog  --disable-harden --disable-zlib --disable-shadow --disable-utmp --disable-utmpx --disable-wtmpx --disable-loginfunc --prefix="$(realpath $PWD/../gray386/_install/)"`
 
 `make -j"$GR_CPUS"`
