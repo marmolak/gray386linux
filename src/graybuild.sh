@@ -6,18 +6,18 @@ declare -a -r USERSPACE=("musl-1.2.2" "busybox-1.34.1" "dropbear-2020.81")
 
 # Install kernel headers
 pushd ./build-kernel-env-with-nix/
-	nix-shell --command "make headers_install ARCH=i386 INSTALL_HDR_PATH=../gray386/"
+	nix-shell --pure --command "make headers_install ARCH=i386 INSTALL_HDR_PATH=../gray386/"
 popd
 
 for U in ${USERSPACE[*]}; do
     pushd ./build-env-with-nix/
-        nix-shell --command "pushd ./${U}/ && ./graybuild.sh && popd"
+        nix-shell --pure --command "pushd ./${U}/ && ./graybuild.sh; popd"
     popd
 done
 
 # Build Linux kernel
 pushd ./build-kernel-env-with-nix/
-	nix-shell --command "make -j"$GR_CPUS" ARCH=i386 bzImage"
+	nix-shell --pure --command "./graybuild.sh"
 popd
 
 rm -rf ./results
