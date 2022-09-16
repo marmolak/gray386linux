@@ -8,3 +8,4 @@ clean:
 	rm -rf ./gray386/_install
 	rm -rf ./gray386/include
 	rm -rf ./gray386/bin/*
+	./grayclean.sh
