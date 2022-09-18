@@ -40,7 +40,7 @@ Fedora 35 with Nix installed.
 ---------------------------
 
 If you want just default build, and you have installed `make` and `bash` then
-you can just type `make` in `src` directory. And you are done.
+you can just type `make` in `src` directory. You are done and `GOTO 100`.
 But if you don't like `make`, you can just type `./graybuild.sh` in `src`
 directory.
 In both cases, results will be placed in `results` directory.
@@ -180,3 +180,6 @@ In kernel directory just run
 ---------------------
 
 `git clean -f -d -X`
+
+**100.** END
+------------
