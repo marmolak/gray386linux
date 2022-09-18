@@ -42,7 +42,8 @@ Fedora 35 with Nix installed.
 If you want just default build, and you have installed `make` and `bash` then
 you can just type `make` in `src` directory. And you are done.
 But if you don't like `make`, you can just type `./graybuild.sh` in `src`
-directory and results will be placed in `results` directory.
+directory.
+In both cases, results will be placed in `results` directory.
 
 In case you want to make some changes then follow next steps.
 
