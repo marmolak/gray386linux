@@ -105,6 +105,7 @@ If you don't want to use `nix-shell`, just type:
 
 `make install`
 
+
 **51.** (optional) Build dropbear SSH client (+~266 K)
 ------------------------------------------------------
 
@@ -165,6 +166,7 @@ Results are in:
 ----------------------
 
 `exit`
+
 
 **81.** (optional) Test build
 -----------------------------
