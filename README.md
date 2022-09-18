@@ -33,7 +33,18 @@ Tested build environment:
 Fedora 35 with Nix installed.
 
 **10.** [Install Nix](https://nixos.org/manual/nix/stable/installation/installing-binary.html#multi-user-installation)
-----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+
+
+**11.** Decide how to build
+---------------------------
+
+If you want just default build, and you have installed `make` and `bash` then
+you can just type `make` in `src` directory. And you are done.
+But if you don't like `make`, you can just type `./graybuild.sh` in `src`
+directory and results will be placed in `results` directory.
+
+In case you want to make some changes then follow next steps.
 
 
 **20.** Get num of cpus
