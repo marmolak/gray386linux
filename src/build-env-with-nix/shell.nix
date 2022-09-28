@@ -1,44 +1,45 @@
-with import <nixpkgs> {};
+with import <nixpkgs> { };
 with pkgsi686Linux;
 
 let
-    gccNoCet = gcc12.cc.overrideAttrs (oldAttrs : rec {
-        configureFlags = [ "--disable-cet" ] ++ oldAttrs.configureFlags;
-    });
+  gccNoCet = gcc12.cc.overrideAttrs (oldAttrs: rec {
+    configureFlags = [ "--disable-cet" ] ++ oldAttrs.configureFlags;
+  });
 
-    gccNoCetWrap = wrapCCWith rec {
-        cc = gccNoCet;
-    };
+  gccNoCetWrap = wrapCCWith rec {
+    cc = gccNoCet;
+  };
 
-in (overrideCC stdenv gccNoCetWrap).mkDerivation
+in
+(overrideCC stdenv gccNoCetWrap).mkDerivation
 {
-    name = "gccnocet";
-    hardeningDisable = [ "all" ];
+  name = "gccnocet";
+  hardeningDisable = [ "all" ];
 
-    buildInputs = [
-	ncurses
-	ncurses.dev
-	pkg-config
-	which
-	autoconf
-	less
-    ];
+  buildInputs = [
+    ncurses
+    ncurses.dev
+    pkg-config
+    which
+    autoconf
+    less
+  ];
 
-    shellHook = ''
-	export CFLAGS="-m32 -march=i386 -mtune=i386 -fcf-protection=none -fno-stack-protector -fomit-frame-pointer -mno-mmx -mno-sse -fno-pic -Os"
-	export CC="gcc"
-	export GR_CPUS=$(nproc --all)
-	cd ..
+  shellHook = ''
+    export CFLAGS="-m32 -march=i386 -mtune=i386 -fcf-protection=none -fno-stack-protector -fomit-frame-pointer -mno-mmx -mno-sse -fno-pic -Os"
+    export CC="gcc"
+    export GR_CPUS=$(nproc --all)
+    cd ..
 
-	# set strip and ar
-	mkdir -p ./gray386/bin/
-	pushd ./gray386/bin/ &> /dev/null
-	rm -rf ./musl-strip
-	rm -rf ./musl-ar
+    # set strip and ar
+    mkdir -p ./gray386/bin/
+    pushd ./gray386/bin/ &> /dev/null
+    rm -rf ./musl-strip
+    rm -rf ./musl-ar
 
-	ln -s "$(which strip)" musl-strip
-	ln -s "$(which ar)" musl-ar
+    ln -s "$(which strip)" musl-strip
+    ln -s "$(which ar)" musl-ar
 
-	popd &> /dev/null
-    '';
+    popd &> /dev/null
+  '';
 }
