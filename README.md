@@ -20,9 +20,7 @@ It's easy. Just take a look at `bin` directory. There is 2 folders named:
 
 `no_fpu` - build with software FPU enabled.
 
-NOTE: only AMD cpus are enabled by default now.
-
-NOTE2: gray386 linux is source based distribution so binaries can be older than
+NOTE: gray386 linux is source based distribution so binaries can be older than
 current configuration.
 
 
