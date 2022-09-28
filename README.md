@@ -27,8 +27,11 @@ current configuration.
 How to build a gray386 linux
 ============================
 
-Tested build environment:
-Fedora 35 with Nix installed.
+Tested build environments:
+
+ - Fedora 36 with Nix installed.
+ - NixOS 22.05.
+
 
 **10.** [Install Nix](https://nixos.org/manual/nix/stable/installation/installing-binary.html#multi-user-installation)
 ----------------------------------------------------------------------------------------------------------------------
