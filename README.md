@@ -12,7 +12,7 @@ Are you interested in Linux on i486 machine? Take a look at [gray486linux](https
 However i486 machine is still able to run actual Linux kernel (2022).
 
 
-How to get binary build?
+How to get a binary build?
 ========================
 It's easy. Just take a look at `bin` directory. There is 2 folders named:
 
