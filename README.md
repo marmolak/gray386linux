@@ -8,34 +8,54 @@
 Linux for i386 machines
 ```
 
-Are you interested in Linux on i486 machine? Take a look at [gray486linux](https://github.com/marmolak/gray486linux). Currently, it's not possible to run gray386linux on i486 machines (but it's possible to run gray386linux on Cyrix 486DLC and similar CPUs).
-However i486 machine is still able to run actual Linux kernel (2022).
+Gray386linux is single user, source based (but binary build is provided) Linux distribution with tiny but current user space (`busybox` + `musl`).
+Main target is a real i386 net-booted machines with at least 8 MB RAM (should work even with 4 MB RAM - and it should work when net-boot is out of a game).
+
+Used Linux kernel is 3.7.10 which should be last kernel directly support i386, however in reality some patching is needed to compile it. So I think that no one ever built/tested this kernel version for/on real i386.
+
+Additional patches & features:
+
+- make kernel compilable - avoid some hard coded `cmpxchg` in kernel source code. 
+- [cmpxchg](https://en.wikipedia.org/wiki/Compare-and-swap) instruction emulator - currently I'm not able to force gcc to not emit them. Seems like lack of `cmpxchg` instruction is one of reasons why Linux dropped support for real i386.
+- Skip `endbr32` instruction for user space - distributions started to use [CET](https://www.intel.com/content/dam/develop/external/us/en/documents/catc17-introduction-intel-cet-844137.pdf) for gcc and even for libraries. `endbr32` is handled as a multinop on i686 generations of CPUs (Pentium II for example) but they are not supported on real i386 (result is CPU exception which is handled by patch - not reproducible in `QEMU`). You can recompile `gcc` without support of `CET` which is one of reasons why [Nix](https://nixos.org/) is involved.
+- Fix floppy issues - patches from Linux kernel 5.17 [git](https://lore.kernel.org/lkml/045df549-6805-0a02-a634-81aca7d98db5@linux.com/T/).
+- Experimental support for ontrack disk manager partitions - ontrack moves real FAT to a different offset.
+- Provide `Nix` based build environment which allows build of Linux kernel with old `gcc` and `perl`.
+
+Main goal of this tiny distribution is to be able to boot via network and be used to:
+
+- Deployment of preconfigured DOS disk images - you can prepare basic setup on virtual machine then move it on real hardware.
+- Play around with old hardware.
+- As a proof that, with some effort, it works & to learn some old/new stuff :).
+
+Currently, it's not possible to run gray386linux on i486 machines (but it's possible to run gray386linux on Cyrix 486DLC and similar CPUs).
+Are you interested in Linux for i486 machines? Take a look at [gray486linux](https://github.com/marmolak/gray486linux). 
+i486 machines are still able to run actual Linux kernel (2022).
 
 
 How to get a binary build?
-========================
+==========================
+
 It's easy. Just take a look at `bin` directory. There is 2 folders named:
 
 `fpu` - version for machines with FPU coprocessor installed.
 
 `no_fpu` - build with software FPU enabled.
 
-NOTE: gray386 linux is source based distribution so binaries can be older than
+NOTE: gray386linux is mainly source based distribution so binaries can be older than
 current configuration.
 
 
-How to build a gray386 linux
+How to build a gray386linux
 ============================
 
 Tested build environments:
 
- - Fedora 36 with Nix installed.
- - NixOS 22.05.
-
+- Fedora 36 with Nix installed.
+- NixOS 22.05.
 
 **10.** [Install Nix](https://nixos.org/manual/nix/stable/installation/installing-binary.html#multi-user-installation)
 ----------------------------------------------------------------------------------------------------------------------
-
 
 **11.** Decide how to build
 ---------------------------
