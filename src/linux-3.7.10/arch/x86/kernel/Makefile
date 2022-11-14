@@ -37,6 +37,7 @@ obj-y			+= resource.o
 
 obj-y				+= process.o
 obj-y				+= i387.o xsave.o
+obj-y				+= i486_emu.o
 obj-y				+= ptrace.o
 obj-$(CONFIG_X86_32)		+= tls.o
 obj-$(CONFIG_IA32_EMULATION)	+= tls.o

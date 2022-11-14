@@ -66,6 +66,7 @@
 #else
 #include <asm/processor-flags.h>
 #include <asm/setup.h>
+#include <asm/i486_emu.h>
 
 asmlinkage int system_call(void);
 
@@ -213,8 +214,32 @@ DO_ERROR_INFO(X86_TRAP_DE, SIGFPE, "divide error", divide_error, FPE_INTDIV,
 		regs->ip)
 DO_ERROR(X86_TRAP_OF, SIGSEGV, "overflow", overflow)
 DO_ERROR(X86_TRAP_BR, SIGSEGV, "bounds", bounds)
-DO_ERROR_INFO(X86_TRAP_UD, SIGILL, "invalid opcode", invalid_op, ILL_ILLOPN,
-		regs->ip)
+
+dotraplinkage void do_invalid_op(struct pt_regs *regs, long error_code)
+{
+	siginfo_t info;
+	int ret;
+
+	info.si_signo = SIGILL;
+	info.si_errno = 0;
+	info.si_code = ILL_ILLOPN;
+	info.si_addr = (void __user *)regs->ip;
+
+	ret = parse_emu_instruction(regs);
+	if (ret > 0) {
+		return;
+	}
+
+	exception_enter(regs);
+	if (notify_die(DIE_TRAP, "invalid opcode", regs, error_code,
+			X86_TRAP_UD, SIGILL) == NOTIFY_STOP) {
+		exception_exit(regs);
+		return;
+	}
+	conditional_sti(regs);
+	do_trap(X86_TRAP_UD, SIGILL, "invalid opcode", regs, error_code, &info);
+	exception_exit(regs);
+}
 DO_ERROR(X86_TRAP_OLD_MF, SIGFPE, "coprocessor segment overrun",
 		coprocessor_segment_overrun)
 DO_ERROR(X86_TRAP_TS, SIGSEGV, "invalid TSS", invalid_TSS)
