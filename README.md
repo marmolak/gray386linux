@@ -16,7 +16,7 @@ Used Linux kernel is 3.7.10 which should be last kernel directly support i386, h
 Additional patches & features:
 
 - make kernel compilable - avoid some hard coded `cmpxchg` in kernel source code. 
-- [cmpxchg](https://en.wikipedia.org/wiki/Compare-and-swap) instruction emulator - currently I'm not able to force gcc to not emit them. Seems like lack of `cmpxchg` instruction is one of reasons why Linux dropped support for real i386.
+- [cmpxchg](https://en.wikipedia.org/wiki/Compare-and-swap), xadd, bswap instruction emulator/simulator - currently I'm not able to force gcc to not emit them. Seems like lack of `cmpxchg` instruction is one of reasons why Linux dropped support for real i386.
 - Skip `endbr32` instruction for user space - distributions started to use [CET](https://www.intel.com/content/dam/develop/external/us/en/documents/catc17-introduction-intel-cet-844137.pdf) for gcc and even for libraries. `endbr32` is handled as a multinop on i686 generations of CPUs (Pentium II for example) but they are not supported on real i386 (result is CPU exception which is handled by patch - not reproducible in `QEMU`). You can recompile `gcc` without support of `CET` which is one of reasons why [Nix](https://nixos.org/) is involved.
 - Fix floppy issues - patches from Linux kernel 5.17 [git](https://lore.kernel.org/lkml/045df549-6805-0a02-a634-81aca7d98db5@linux.com/T/).
 - Experimental support for ontrack disk manager partitions - ontrack moves real FAT to a different offset.
@@ -36,11 +36,9 @@ i486 machines are still able to run actual Linux kernel (2022).
 How to get a binary build?
 ==========================
 
-It's easy. Just take a look at `bin` directory. There is 2 folders named:
+It's easy. Just take a look at `bin` directory.
 
-`fpu` - version for machines with FPU coprocessor installed.
-
-`no_fpu` - build with software FPU enabled.
+Two versions of build has been cancelled because fpu version doesn't add load of bytes (~24 KB) and works on both (non fpu & fpu) machines.
 
 NOTE: gray386linux is mainly source based distribution so binaries can be older than
 current configuration.
