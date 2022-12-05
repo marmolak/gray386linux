@@ -49,7 +49,7 @@ How to build a gray386linux
 
 Tested build environments:
 
-- Fedora 36 with Nix installed.
+- Fedora 37 with Nix installed.
 - NixOS 22.05.
 
 **10.** [Install Nix](https://nixos.org/manual/nix/stable/installation/installing-binary.html#multi-user-installation)
