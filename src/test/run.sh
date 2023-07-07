@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #DEBUG="-s -S"
 MEM="7808k"
