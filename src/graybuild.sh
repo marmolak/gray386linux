@@ -23,6 +23,5 @@ popd
 rm -rf ./results
 mkdir ./results
 pushd linux-3.7.10/
-	cp ./usr/initramfs_data.cpio.gz ../results
 	cp ./arch/i386/boot/bzImage ../results/
 popd
