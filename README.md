@@ -51,6 +51,7 @@ Tested build environments:
 
 - Fedora 38 with Nix installed.
 - NixOS 23.05.
+- Docker/podman container.
 
 **10.** [Install Nix](https://nixos.org/manual/nix/stable/installation/installing-binary.html#multi-user-installation)
 ----------------------------------------------------------------------------------------------------------------------
