@@ -20,6 +20,7 @@ gcc49Stdenv.mkDerivation
     bison
     rsync
     less
+    nettools
   ];
 
   shellHook = ''
