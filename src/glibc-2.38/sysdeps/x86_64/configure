@@ -1,0 +1,34 @@
+# This file is generated from configure.ac by Autoconf.  DO NOT EDIT!
+ # Local configure fragment for sysdeps/x86_64.
+
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking -mprefer-vector-width=128" >&5
+printf %s "checking -mprefer-vector-width=128... " >&6; }
+if test ${libc_cv_cc_mprefer_vector_width+y}
+then :
+  printf %s "(cached) " >&6
+else $as_nop
+  if { ac_try='${CC-cc} -mprefer-vector-width=128 -xc /dev/null -S -o /dev/null'
+  { { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$ac_try\""; } >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; }
+then :
+  libc_cv_cc_mprefer_vector_width=yes
+else $as_nop
+  libc_cv_cc_mprefer_vector_width=no
+fi
+
+fi
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $libc_cv_cc_mprefer_vector_width" >&5
+printf "%s\n" "$libc_cv_cc_mprefer_vector_width" >&6; }
+config_vars="$config_vars
+config-cflags-mprefer-vector-width = $libc_cv_cc_mprefer_vector_width"
+
+if test x"$build_mathvec" = xnotset; then
+  build_mathvec=yes
+fi
+
+test -n "$critic_missing" && as_fn_error $? "
+*** $critic_missing" "$LINENO" 5
+
