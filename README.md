@@ -30,7 +30,7 @@ Main goal of this tiny distribution is to be able to boot via network and be use
 
 Currently, it's not possible to run gray386linux on i486 machines (but it's possible to run gray386linux on Cyrix 486DLC and similar CPUs).
 Are you interested in Linux for i486 machines? Take a look at [gray486linux](https://github.com/marmolak/gray486linux). 
-i486 machines are still able to run actual Linux kernel (2023).
+i486 machines are still able to run actual Linux kernel (2024).
 
 
 How to get a binary build?
@@ -49,8 +49,8 @@ How to build a gray386linux
 
 Tested build environments:
 
-- Fedora 38 with Nix installed.
-- NixOS 23.05.
+- Fedora 39 with Nix installed.
+- NixOS 23.11.
 - Docker/podman container.
 
 **10.** [Install Nix](https://nixos.org/manual/nix/stable/installation/installing-binary.html#multi-user-installation)
