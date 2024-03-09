@@ -2,7 +2,7 @@ with import <nixpkgs> { };
 with pkgsi686Linux;
 
 let
-  gccNoCet = gcc12.cc.overrideAttrs (oldAttrs: rec {
+  gccNoCet = gcc13.cc.overrideAttrs (oldAttrs: rec {
     configureFlags = [ "--disable-cet" ] ++ oldAttrs.configureFlags;
   });
 
