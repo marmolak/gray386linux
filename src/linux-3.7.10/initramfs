@@ -15,6 +15,9 @@ nod /dev/zero 666 0 0 c 1 5
 nod /dev/random 0600 0 0 c 1 8
 nod /dev/urandom 0600 0 0 c 1 9
 nod /dev/fd0 0600 0 0 b 2 0
+nod /dev/mem 0660 0 0 c 1 1
+nod /dev/kmem 0640 0 0 c 1 2
+nod /dev/port 0660 0 0 c 1 4
 
 nod /dev/sda 0600 0 0 b 8 0
 nod /dev/sda1 0600 0 0 b 8 1
