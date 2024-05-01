@@ -4,6 +4,7 @@
 /sbin/ifconfig lo up
 
 /bin/mount -t proc p /proc
+/bin/mount -t sysfs s /sys
 
 /bin/cat << "EOF"
   _______ .______          ___   ____    ____  ____     ___      __
