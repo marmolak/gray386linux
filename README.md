@@ -32,6 +32,12 @@ Currently, it's not possible to run gray386linux on i486 machines (but it's poss
 Are you interested in Linux for i486 machines? Take a look at [gray486linux](https://github.com/marmolak/gray486linux). 
 i486 machines are still able to run actual Linux kernel (2024).
 
+NOTE FOR Pocket386 USERS!
+=========================
+
+Gray386linux runs on M6117 (386SX SOC), which is the heart of Pocket386.
+However, you need to add `i8042.dumbkbd=1` to the kernel command-line interface to disable the handling of
+keyboard LEDs in order to make the internal keyboard work.
 
 How to get a binary build?
 ==========================
