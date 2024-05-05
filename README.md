@@ -8,7 +8,7 @@
 Linux for i386 machines
 ```
 
-Gray386linux is single user, source based (but binary build is provided) Linux distribution with tiny but current user space (`busybox` + `musl`).
+Gray386linux is a single-user, source-based (but binary build is provided) Linux distribution with tiny but current user space (`busybox` + `musl`).
 Main target is a real i386 net-booted machines with at least 8 MB RAM (should work even with 4 MB RAM - and it should work when net-boot is out of a game).
 
 Used Linux kernel is 3.7.10 which should be last kernel directly support i386, however in reality some patching is needed to compile it. So I think that no one ever built/tested this kernel version for/on real i386.
